@@ -1,0 +1,14 @@
+FROM elixir
+ENV PATH /usr/local/bin:$PATH
+RUN mix local.hex --force --if-missing
+ENV MIX_ENV development
+WORKDIR ${BACKEND_SRC_PATH}
+COPY . .
+# RUN mix deps.get
+# RUN mix compile
+# RUN mix phx.digest
+EXPOSE ${BACKEND_PORT}
+CMD ["iex"]
+
+# CMD ["iex", "-S mix phx.server --no-halt"]
+# CMD ["mix", "phx.server", "--no-halt"]
